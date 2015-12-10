@@ -89,7 +89,7 @@ class App extends React.Component {
   addNewPost(post) {
     var timestamp = (new Date()).getTime();
     var username = this.state.userProfile.slug;
-    var postRef = ref.child('posts/' + username + timestamp);
+    var postRef = ref.child('posts/' + username + '-' + timestamp);
     var newPost = {
       owner : username,
       ownerName : this.state.userProfile.name,
@@ -99,6 +99,13 @@ class App extends React.Component {
     }
 
     postRef.set(newPost);
+  }
+
+  removePost(key) {
+    var postRef = ref.child('posts/' + key);
+
+    postRef.remove();
+    //console.log(key);
   }
 
   toggleLogin() {
@@ -129,7 +136,9 @@ class App extends React.Component {
           setProfile : this.setProfile.bind(this),
           userProfile : this.state.userProfile,
           linkState : this.linkState.bind(this),
-          addNewPost : this.addNewPost.bind(this)
+          addNewPost : this.addNewPost.bind(this),
+          removePost : this.removePost.bind(this),
+          loggedIn : this.state.loggedIn
         })}
 
       </div>
