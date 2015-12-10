@@ -1,6 +1,6 @@
 /* MenuBar */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import Firebase from 'firebase';
 const ref = new Firebase('https://react-firebase-sn.firebaseio.com/');
 
@@ -35,7 +35,7 @@ class MenuBar extends React.Component {
       <ul className="menu-ul">
         <Link to={`/profile/${this.props.userName}`}><li>Your Profile</li></Link>
         <Link to={`/profile/${this.props.userName}/edit-profile`}><li>Edit Profile</li></Link>
-        <Link to="/"><li>Home</li></Link>
+        <IndexLink to="/"><li>Home</li></IndexLink>
         <Link to="/" onClick={this.props.logOut}><li>Log Out</li></Link>
       </ul>
     )

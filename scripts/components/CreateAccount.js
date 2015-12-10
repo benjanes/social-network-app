@@ -32,7 +32,7 @@ class CreateAccount extends React.Component {
     });
   }
 
-  addUser(usernameList) {
+  addUser() {
     var hist = this.props.history;
     var username = this.refs.username.value;
     var slug = $.slugify(username);
@@ -49,7 +49,7 @@ class CreateAccount extends React.Component {
         console.log('Error creating user:', error);
       } else {
         var newUserProfile = ref.child('profiles/' + userData.uid);
-        newUserProfile.set({ username : username, slug : slug });
+        newUserProfile.set({ username : username, slug : slug, uid : userData.uid, name : username });
 
         usernamesRef.once('value', snapshot => {
           var usernames = snapshot.val() || null;

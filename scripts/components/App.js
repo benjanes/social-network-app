@@ -17,7 +17,6 @@ class App extends React.Component {
 
     this.state = {
       userProfile : {},
-      uid : null,
       loggedIn : false,
       userName : null,
       showLoginPrompt : false
@@ -60,7 +59,7 @@ class App extends React.Component {
 
     this.setState({ userProfile : profile });
 
-    dataPath.update({ profile : profile});
+    dataPath.update( profile );
   }
 
   logOut() {
@@ -79,12 +78,27 @@ class App extends React.Component {
       imgLink : ''
     }
 
-    if (userData.profile) {
-      this.setState({ userProfile : userData.profile });
+    if (userData.name) {
+      this.setState({ userProfile : userData });
     } else {
       this.setState({ userProfile : defaultProfile });
     }
     
+  }
+
+  addNewPost(post) {
+    var timestamp = (new Date()).getTime();
+    var username = this.state.userProfile.slug;
+    var postRef = ref.child('posts/' + username + timestamp);
+    var newPost = {
+      owner : username,
+      ownerName : this.state.userProfile.name,
+      postTitle : post.title,
+      postBody : post.body,
+      postId : timestamp
+    }
+
+    postRef.set(newPost);
   }
 
   toggleLogin() {
@@ -114,7 +128,8 @@ class App extends React.Component {
         {this.props.children && React.cloneElement(this.props.children, {
           setProfile : this.setProfile.bind(this),
           userProfile : this.state.userProfile,
-          linkState : this.linkState.bind(this)
+          linkState : this.linkState.bind(this),
+          addNewPost : this.addNewPost.bind(this)
         })}
 
       </div>
