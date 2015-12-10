@@ -1,6 +1,7 @@
 /* Home */
 
 import React from 'react';
+import { Link } from 'react-router';
 
 // Firebase
 import Firebase from 'firebase';
@@ -17,7 +18,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    //console.log('mounted');
     var profiles = ref.child('profiles');
     
     profiles.limitToFirst(2).once('value', snapshot => {
@@ -36,7 +36,7 @@ class Home extends React.Component {
     if(val) {
       return (
         <li key={val.name}>
-          <h2>{val.name}</h2>
+          <Link to={`/profile/${val.slug}`}><h2>{val.name}</h2></Link>
         </li>
       )
     }

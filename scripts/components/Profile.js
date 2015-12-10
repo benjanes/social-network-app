@@ -68,8 +68,6 @@ class Profile extends React.Component {
   deletePost(e) {
     e.preventDefault();
 
-    //console.log(this);
-
     this.props.removePost(e.target.parentElement.id);
   }
 
