@@ -1,8 +1,8 @@
 /* Profile */
 
 import React from 'react';
+import Post from './Post';
 import NewPost from './NewPost';
-import $ from '../helpers';
 
 import Firebase from 'firebase';
 const ref = new Firebase('https://react-firebase-sn.firebaseio.com/');
@@ -52,23 +52,18 @@ class Profile extends React.Component {
   }
 
   renderPost(key) {
-    var post = this.state.posts[key];
-    var date = $.transformDate(post.postId);
-
     return (
-      <li key={key} id={key} ref={key}>
-        <h4>{post.postTitle}</h4>
-        <p><span>{date[0]}</span><span>{date[1]}</span></p>
-        <p>{post.postBody}</p>
-        <button onClick={this.deletePost.bind(this)}>Remove Post</button>
-      </li>
+      <Post 
+        post={this.state.posts[key]} 
+        key={key} 
+        currentProfileUid={this.state.profile.uid} 
+        currentUserUid={this.props.userProfile.uid}
+        removePost={this.props.removePost}
+        postId={key}
+        addNewComment={this.props.addNewComment}
+        loggedIn={this.props.loggedIn}
+      />
     )
-  }
-
-  deletePost(e) {
-    e.preventDefault();
-
-    this.props.removePost(e.target.parentElement.id);
   }
 
   render() {

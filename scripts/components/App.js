@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   logOut() {
-    this.setState({ loggedIn : false });
+    this.setState({ loggedIn : false, userProfile : {}, userName : null });
     localStorage.removeItem('token');
     localStorage.removeItem('currUid');
   }
@@ -101,11 +101,24 @@ class App extends React.Component {
     postRef.set(newPost);
   }
 
+  addNewComment(postId, comment) {
+    var timestamp = (new Date()).getTime();
+    var username = this.state.userProfile.slug;
+    var commentRef = ref.child('posts/' + postId + '/comments/' + timestamp);
+    var newComment = {
+      owner : username,
+      ownerName : this.state.userProfile.name,
+      commentBody : comment,
+      commentId : timestamp
+    }
+
+    commentRef.set(newComment);
+  }
+
   removePost(key) {
     var postRef = ref.child('posts/' + key);
 
     postRef.remove();
-    //console.log(key);
   }
 
   toggleLogin() {
@@ -138,6 +151,7 @@ class App extends React.Component {
           linkState : this.linkState.bind(this),
           addNewPost : this.addNewPost.bind(this),
           removePost : this.removePost.bind(this),
+          addNewComment : this.addNewComment.bind(this),
           loggedIn : this.state.loggedIn
         })}
 

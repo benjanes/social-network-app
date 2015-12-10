@@ -20,7 +20,7 @@ class Home extends React.Component {
   componentDidMount() {
     var profiles = ref.child('profiles');
     
-    profiles.limitToFirst(2).once('value', snapshot => {
+    profiles.limitToFirst(5).once('value', snapshot => {
       var data = snapshot.val() || {};
       var keys = Object.keys(data);
       var profiles = [];

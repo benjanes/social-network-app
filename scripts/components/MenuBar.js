@@ -21,10 +21,12 @@ class MenuBar extends React.Component {
   }
 
   renderLoggedOutMenu() {
+    var loginLiClass = this.props.showLoginPrompt ? 'li-arrow li-arrow-down' : 'li-arrow li-arrow-up';
+
     return (
       <ul className="menu-ul">
         <Link to="/create-account"><li>Create Account</li></Link>
-        <li onClick={this.props.toggleLogin}>Login</li>
+        <li onClick={this.props.toggleLogin} className={loginLiClass}>Login</li>
         { this.props.showLoginPrompt ? <LogIn ref="loginPrompt" logIn={this.logIn.bind(this)} /> : null }
       </ul>
     )

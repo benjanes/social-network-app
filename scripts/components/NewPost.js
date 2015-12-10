@@ -1,4 +1,6 @@
-/* NewMessage */
+/* 
+  <NewPost/> 
+*/
 
 import React from 'react';
 
@@ -8,7 +10,7 @@ class NewPost extends React.Component {
     super();
 
     this.state = {
-      showForm : false
+      showPostForm : false
     }
   }
 
@@ -23,12 +25,12 @@ class NewPost extends React.Component {
     this.props.addNewPost(newPost);
   }
 
-  toggleShowForm(e) {
+  toggleShowPostForm(e) {
     e.preventDefault();
-    if (!this.state.showForm) {
-      this.setState({ showForm : true });
+    if (!this.state.showPostForm) {
+      this.setState({ showPostForm : true });
     } else {
-      this.setState({ showForm : false });
+      this.setState({ showPostForm : false });
     }
   }
 
@@ -40,18 +42,18 @@ class NewPost extends React.Component {
         <h4>Post</h4>
         <textarea ref="postBody" />
         <input type="submit" value="Post new message" />
-        <button onClick={this.toggleShowForm.bind(this)}>Cancel Post</button>
+        <button onClick={this.toggleShowPostForm.bind(this)}>Cancel Post</button>
       </form>
     )
   }
 
   renderNewPostBtn() {
-    return <button onClick={this.toggleShowForm.bind(this)}>Write new post!</button>
+    return <button onClick={this.toggleShowPostForm.bind(this)}>Write new post!</button>
   }
 
   render() {
 
-    if (!this.state.showForm) {
+    if (!this.state.showPostForm) {
       return (
         <span>{this.renderNewPostBtn()}</span>
       )
