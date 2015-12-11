@@ -133,7 +133,7 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <span><h2>Site Title</h2></span>
+          <span><h1>Site Title</h1></span>
           <MenuBar 
             loggedIn={this.state.loggedIn} 
             userName={this.state.userName} 
@@ -144,7 +144,7 @@ class App extends React.Component {
             toggleLogin={this.toggleLogin.bind(this)}
           />
         </header>
-
+        <article className="main-content">
         {this.props.children && React.cloneElement(this.props.children, {
           setProfile : this.setProfile.bind(this),
           userProfile : this.state.userProfile,
@@ -154,7 +154,7 @@ class App extends React.Component {
           addNewComment : this.addNewComment.bind(this),
           loggedIn : this.state.loggedIn
         })}
-
+        </article>
       </div>
     )
   }

@@ -76,6 +76,9 @@ class Profile extends React.Component {
       <div>
         <h2>{profile.name}</h2>
         <p>{profile.desc}</p>
+        <div className="profile-pic">
+          <div className="profile-pic-inner" style={{ backgroundImage : 'url(' + profile.imgLink + ')' }} ></div>
+        </div>
 
         {/* only render this if it is the profile of the logged in user */}
         { this.state.profile.uid === this.props.userProfile.uid ? <NewPost addNewPost={this.props.addNewPost} /> : null }

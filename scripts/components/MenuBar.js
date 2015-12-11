@@ -27,7 +27,7 @@ class MenuBar extends React.Component {
       <ul className="menu-ul">
         <Link to="/create-account"><li>Create Account</li></Link>
         <li onClick={this.props.toggleLogin} className={loginLiClass}>Login</li>
-        { this.props.showLoginPrompt ? <LogIn ref="loginPrompt" logIn={this.logIn.bind(this)} /> : null }
+        { this.props.showLoginPrompt ? <LogIn ref="loginPrompt" logIn={this.logIn.bind(this)} toggleLogin={this.props.toggleLogin} /> : null }
       </ul>
     )
   }

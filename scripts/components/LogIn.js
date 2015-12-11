@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class LogIn extends React.Component {
@@ -12,7 +13,7 @@ class LogIn extends React.Component {
             <input type="password" placeholder="password" ref="pw" />
             <input type="submit" value="Log In" />
           </form>
-          <p>Don't have an account? <span>Create one!</span></p>
+          <p>Don't have an account?<br /><Link to="/create-account" onClick={this.props.toggleLogin}>Create one!</Link></p>
         </div>
       </CSSTransitionGroup>
     )
