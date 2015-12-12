@@ -18,7 +18,7 @@ gulp.task('styles', function() {
   // compile the css
   gulp.src('css/styles.sass')
     .pipe(sass({
-      includePaths: ['./node_modules/normalize-scss/sass/']
+      includePaths: ['./node_modules/normalize-scss/sass/', './node_modules/susy/sass/']
     }))
     .pipe(autoprefixer())
     .pipe(gulp.dest('./build/css/'))

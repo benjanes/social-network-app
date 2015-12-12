@@ -1,4 +1,6 @@
 /* Main */
+$font: #030E4E
+$li-color: #ff0029
 
 *
   box-sizing: border-box
@@ -12,3 +14,16 @@
 .main-content
   margin-top: 7em
   padding: 0 1.5em 3em 1.5em
+
+input[type="submit"], button
+  color: white
+  margin-top: 0.5em
+  background: $li-color
+  border: 2px solid #fff
+  border-radius: 6px
+  padding: 0.4em 0.8em
+  transition: all 0.3s
+  &:hover
+    border: 2px solid $li-color
+    background: #fff
+    color: $font

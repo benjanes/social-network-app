@@ -70,23 +70,35 @@ class Profile extends React.Component {
   	var profile = this.state.profile;
     var posts = this.state.posts;
 
-    //console.log(posts);
-
     return (
       <div>
-        <h2>{profile.name}</h2>
-        <p>{profile.desc}</p>
-        <div className="profile-pic">
-          <div className="profile-pic-inner" style={{ backgroundImage : 'url(' + profile.imgLink + ')' }} ></div>
-        </div>
-
-        {/* only render this if it is the profile of the logged in user */}
-        { this.state.profile.uid === this.props.userProfile.uid ? <NewPost addNewPost={this.props.addNewPost} /> : null }
-
-        <h3>Posts</h3>
+        <div className="left-col">
+          <h3>Posts</h3>
         	<ul>
             {Object.keys(this.state.posts).reverse().map(this.renderPost.bind(this))}
           </ul>
+        </div>
+
+        <div className="right-col">
+
+          <div className="profile-right">
+
+            <div className="profile-card">
+              <div className="profile-pic">
+                <div className="profile-pic-inner" style={{ backgroundImage : 'url(' + profile.imgLink + ')' }} ></div>
+                <div className="profile-pic-border"><div className="profile-pic-border-inner"></div></div>
+              </div>
+              <div className="profile-name">
+                <h2>{profile.name}</h2>
+              </div>
+              <p className="profile-desc">{profile.desc}</p>
+            </div>
+
+            {/* only render this if it is the profile of the logged in user */}
+            { this.state.profile.uid === this.props.userProfile.uid ? <NewPost addNewPost={this.props.addNewPost} /> : null }
+          
+          </div>
+        </div>
 
       </div>
     )
